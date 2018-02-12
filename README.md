@@ -1,2 +1,3 @@
 # motivNation
-Senior Project App - motivational fitness tool app
+Senior Project Mobile App - motivational fitness tool 
+Written in React-Native and Firebase
