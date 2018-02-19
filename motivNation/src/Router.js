@@ -9,21 +9,28 @@ const RouterComponent = () => {
     // login scene
     <Router>
       <Scene key="root" hideNavBar>
-      <Scene key="auth">
-        <Scene
-        rightTitle="Register?"
-        onRight={() => Actions.register()}
-        key="login"
-        component={LoginForm}
-        title=" Welcome to MotivNation!"
-        initial
-        />
+
+        <Scene key="auth">
+          <Scene
+          rightTitle="Register?"
+          onRight={() => Actions.register()}
+          key="login"
+          component={LoginForm}
+          title="Login"
+          initial
+          />
         <Scene key="register" component={RegisterForm} title="Register Here" />
       </Scene>
+
       <Scene key="main">
-        <Scene key="home" component={Home} title="Home" />
+        <Scene
+        key="home"
+        component={Home}
+        title="Home"
+        />
       </Scene>
       </Scene>
+
     </Router>
   );
 }
