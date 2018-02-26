@@ -28,6 +28,8 @@ const RouterComponent = () => {
 
       <Scene key="main">
         <Scene
+        leftTitle="Log Out"
+        onLeft={() => Actions.login()}
         key="home"
         component={Home}
         title="MotivNation"
