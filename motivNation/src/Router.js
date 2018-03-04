@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from 'firebase';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
@@ -21,6 +22,7 @@ const RouterComponent = () => {
           key="login"
           component={LoginForm}
           title="Login"
+          //type='reset'
           initial
           />
         <Scene key="register" component={RegisterForm} title="Register Here" />
@@ -29,7 +31,10 @@ const RouterComponent = () => {
       <Scene key="main">
         <Scene
         leftTitle="Log Out"
-        onLeft={() => Actions.login()}
+        onLeft={
+        () => firebase.auth().signOut()
+        .then(() => Actions.auth({ type: 'reset' }))
+        }
         key="home"
         component={Home}
         title="MotivNation"
