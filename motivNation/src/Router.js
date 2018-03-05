@@ -34,6 +34,7 @@ const RouterComponent = () => {
         onLeft={
         () => firebase.auth().signOut()
         .then(() => Actions.auth({ type: 'reset' }))
+        .catch((error) => { console.log(error); })
         }
         key="home"
         component={Home}

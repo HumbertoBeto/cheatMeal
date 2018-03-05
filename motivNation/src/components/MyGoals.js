@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ListView } from 'react-native';
 import { goalFetch } from '../actions';
-import ListItem from './ListItem';
+import ListItems from './ListItems';
 
 class MyGoals extends Component {
   componentWillMount() {
@@ -24,7 +24,7 @@ class MyGoals extends Component {
   }
 
 renderRow(goal) {
-  return <ListItem goal={goal} />
+  return <ListItems goal={goal} />;
 }
   render() {
     console.log(this.props);

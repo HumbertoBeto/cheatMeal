@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
+import { CheckBox } from 'native-base';
 import { CardSection } from './common';
 
-class ListItem extends Component {
+class ListItems extends Component {
   render() {
     const { goal_name } = this.props.goal;
 
     return (
       <CardSection>
+        <CheckBox checked={false} />
         <Text style={styles.titleStyle}>
           {goal_name}
         </Text>
@@ -18,9 +20,9 @@ class ListItem extends Component {
 
 const styles = {
   titleStyle: {
-    fontSize: 18,
-    paddingLeft: 15
+    fontSize: 25,
+    paddingLeft: 25
   }
 };
 
-export default ListItem;
+export default ListItems;
