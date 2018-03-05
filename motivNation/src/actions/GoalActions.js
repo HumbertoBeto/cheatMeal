@@ -26,7 +26,7 @@ export const goalFetch = () => {
   const { currentUser } = firebase.auth();
 
   return (dispatch) => {
-    firebase.database().ref(`/user/${currentUser.uid}/goals`)
+    firebase.database().ref(`/users/${currentUser.uid}/goals`)
       .on('value', snapshot => {
         dispatch({ type: GOAL_FETCH_SUCCESS, payload: snapshot.val() });
       });
