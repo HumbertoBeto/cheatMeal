@@ -1,35 +1,58 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
-import { Card, CardSection, Button } from './common';
+import { Button, Icon, Text, Container, Content, View } from 'native-base';
 
 class MyTools extends Component {
   render() {
     return (
-      <Card>
-        <CardSection>
-          <Button>
-            Exercise Database
-          </Button>
-        </CardSection>
+      <Container>
+        <Content>
+          <View>
+            <Button
+              block
+              large
+              iconLeft
+              success
+              style={{ marginTop: 10 }}
+            >
+              <Icon name='clipboard' />
+              <Text> Exercise Database </Text>
+            </Button>
 
-        <CardSection>
-          <Button>
-            HIIT (interval) Timer
-          </Button>
-        </CardSection>
+            <Button
+            block
+            large
+            iconLeft
+            style={{ marginTop: 10 }}
+            >
+              <Icon name='construct' />
+              <Text>HIIT Timer</Text>
+            </Button>
 
-        <CardSection>
-          <Button>
-            Food Database
-          </Button>
-        </CardSection>
+            <Button
+              block
+              large
+              iconLeft
+              warning
+              style={{ marginTop: 10 }}
+            >
+              <Icon name='construct' />
+              <Text>Food Database</Text>
+            </Button>
 
-        <CardSection>
-          <Button>
-            Calorie Calculator
-          </Button>
-        </CardSection>
-      </Card>
+            <Button
+              block
+              large
+              iconLeft
+              danger
+              style={{ marginTop: 10 }}
+            >
+              <Icon name='construct' />
+              <Text>Food Database</Text>
+            </Button>
+
+          </View>
+        </Content>
+      </Container>
     );
   }
 }

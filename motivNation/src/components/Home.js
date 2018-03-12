@@ -84,7 +84,7 @@ renderButtonB() {
             <View style={{ flex: 1, alignSelf: 'center' }}>
               <Thumbnail style={{ flex: 1 }} large source={{ uri: 'https://vignette.wikia.nocookie.net/spongebob/images/e/e5/Pug-cute-dog-pet-animal-1920x1080-1024x576.jpg/revision/latest?cb=20140524180216' }} />
               </View>
-          </View>
+            </View>
           <View style={{ marginTop: 30 }}>
             {this.renderButtonA()}
             {this.renderButtonB()}
