@@ -8,6 +8,11 @@ import MyNation from './components/MyNation';
 import MyTools from './components/MyTools';
 import Home from './components/Home';
 import GoalCreate from './components/GoalCreate';
+import ExerciseSearch from './components/ExerciseSearch';
+import FoodSearch from './components/FoodSearch';
+import HiitTimer from './components/HiitTimer';
+import CalorieForm from './components/CalorieForm';
+
 
 const RouterComponent = () => {
   return (
@@ -50,6 +55,11 @@ const RouterComponent = () => {
         <Scene key="goalCreate" component={GoalCreate} title="Create Goal" />
         <Scene key="mytools" component={MyTools} title="My Tools" />
         <Scene key="mynation" component={MyNation} title="My Nation" />
+
+        <Scene key="exercisesearch" component={ExerciseSearch} title="Exercise Database" />
+        <Scene key="foodsearch" component={FoodSearch} title="Food Database" />
+        <Scene key="hiittimer" component={HiitTimer} title="Hiit Timer" />
+        <Scene key="calorieform" component={CalorieForm} title="Calorie Calculator" />
       </Scene>
       </Scene>
 

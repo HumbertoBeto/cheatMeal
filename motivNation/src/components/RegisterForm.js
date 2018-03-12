@@ -1,8 +1,17 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
 import { connect } from 'react-redux';
+import { Container,
+        Content,
+        Form, Item,
+        Input,
+        Label,
+        Button,
+        Icon,
+        Text,
+        View
+      } from 'native-base';
 import { emailChanged, passwordChanged, loginUser, createUser } from '../actions';
-import { Card, CardSection, Input, Button, Spinner } from './common';
+import { Spinner } from './common';
 
 class RegisterForm extends Component {
 
@@ -26,42 +35,52 @@ class RegisterForm extends Component {
     }
 
     return (
-      <Button onPress={this.onButtonPress.bind(this)}>
-        Login
+      <Button
+      onPress={this.onButtonPress.bind(this)}
+      block
+      large
+      iconLeft
+      success
+      >
+      <Icon name='construct' />
+      <Text>Create Account</Text>
       </Button>
     );
   }
 
   render() {
     return (
-      <Card>
-        <CardSection>
-          <Input
-            label="Email"
-            placeholder="email@gmail.com"
-            onChangeText={this.onEmailChange.bind(this)}
-            value={this.props.email}
-          />
-        </CardSection>
+      <Container>
+       <Content>
+         <Form>
+           <Item floatingLabel >
+             <Label>Email</Label>
+             <Input
+             onChangeText={this.onEmailChange.bind(this)}
+             value={this.props.email}
+             />
+           </Item>
 
-        <CardSection>
-          <Input
-            secureTextEntry
-            label="Password"
-            placeholder="password"
-            onChangeText={this.onPasswordChange.bind(this)}
-            value={this.props.password}
-          />
-        </CardSection>
+           <Item floatingLabel last>
+             <Label>Password</Label>
+             <Input
+             secureTextEntry
+             onChangeText={this.onPasswordChange.bind(this)}
+             value={this.props.password}
+             />
+           </Item>
+         </Form>
 
-        <Text style={styles.errorTextStyle}>
-          {this.props.error}
-        </Text>
+         <Text style={styles.errorTextStyle}>
+           {this.props.error}
+         </Text>
 
-        <CardSection>
+         <View style={{ marginTop: 30 }}>
           {this.renderButton()}
-        </CardSection>
-      </Card>
+         </View>
+
+       </Content>
+     </Container>
     );
   }
 }

@@ -1,7 +1,29 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Button, Icon, Text, Container, Content, View } from 'native-base';
+import { exerciseDataPressed,
+        foodDataPressed,
+        hiitTimerPressed,
+        calorieCalcPressed } from '../actions';
 
 class MyTools extends Component {
+
+  onExerciseDataButtonPressed() {
+    this.props.exerciseDataPressed();
+  }
+
+  onFoodDataButtonPressed() {
+    this.props.foodDataPressed();
+  }
+
+  onHiitTimerButtonPressed() {
+    this.props.hiitTimerPressed();
+  }
+
+  onCalorieCalcButtonPressed() {
+    this.props.calorieCalcPressed();
+  }
+
   render() {
     return (
       <Container>
@@ -12,6 +34,7 @@ class MyTools extends Component {
               large
               iconLeft
               success
+              onPress={this.onExerciseDataButtonPressed.bind(this)}
               style={{ marginTop: 10 }}
             >
               <Icon name='clipboard' />
@@ -22,6 +45,7 @@ class MyTools extends Component {
             block
             large
             iconLeft
+            onPress={this.onHiitTimerButtonPressed.bind(this)}
             style={{ marginTop: 10 }}
             >
               <Icon name='construct' />
@@ -33,6 +57,7 @@ class MyTools extends Component {
               large
               iconLeft
               warning
+              onPress={this.onFoodDataButtonPressed.bind(this)}
               style={{ marginTop: 10 }}
             >
               <Icon name='construct' />
@@ -44,10 +69,11 @@ class MyTools extends Component {
               large
               iconLeft
               danger
+              onPress={this.onCalorieCalcButtonPressed.bind(this)}
               style={{ marginTop: 10 }}
             >
               <Icon name='construct' />
-              <Text>Food Database</Text>
+              <Text>Calorie Calculator</Text>
             </Button>
 
           </View>
@@ -57,4 +83,6 @@ class MyTools extends Component {
   }
 }
 
-export default MyTools;
+
+export default connect(null,
+  { exerciseDataPressed, foodDataPressed, hiitTimerPressed, calorieCalcPressed })(MyTools);

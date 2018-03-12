@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Container,
-        Header,
         Content,
         Form, Item,
         Input,
@@ -52,6 +51,7 @@ class LoginForm extends Component {
       <Container>
        <Content>
          <Form>
+
            <Item floatingLabel >
              <Label>Email</Label>
              <Input
@@ -59,6 +59,7 @@ class LoginForm extends Component {
              value={this.props.email}
              />
            </Item>
+
            <Item floatingLabel last>
              <Label>Password</Label>
              <Input
@@ -67,15 +68,30 @@ class LoginForm extends Component {
              value={this.props.password}
              />
            </Item>
+
          </Form>
+
+         <Text style={styles.errorTextStyle}>
+          {this.props.error}
+        </Text>
+
          <View style={{ marginTop: 30 }}>
           {this.renderButton()}
          </View>
+
        </Content>
      </Container>
     );
   }
 }
+
+const styles = {
+  errorTextStyle: {
+    fontSize: 20,
+    alignSelf: 'center',
+    color: 'red'
+  }
+};
 
 const mapStateToProps = ({ auth }) => {
   const { email, password, error, loading } = auth;

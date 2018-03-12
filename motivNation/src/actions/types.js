@@ -10,3 +10,7 @@ export const MY_NATION_PRESSED = 'my_nation_pressed';
 export const GOAL_UPDATE = 'goal_update';
 export const GOAL_CREATE = 'goal_create';
 export const GOAL_FETCH_SUCCESS = 'goal_fetch_success';
+export const EXERCISE_DATA_PRESSED = 'exercise_data_pressed';
+export const FOOD_DATA_PRESSED = 'food_data_pressed';
+export const HIIT_TIMER_PRESSED = 'hiit_timer_pressed';
+export const CALORIE_CALC_PRESSED = 'calorie_calc_pressed';
