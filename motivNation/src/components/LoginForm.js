@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
 import { connect } from 'react-redux';
+import { Container,
+        Header,
+        Content,
+        Form, Item,
+        Input,
+        Label,
+        Button,
+        Icon,
+        Text,
+        View
+      } from 'native-base';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
-import { Card, CardSection, Input, Button, Spinner } from './common';
+import { Spinner } from './common';
 
 class LoginForm extends Component {
   onEmailChange(text) {
@@ -25,53 +35,47 @@ class LoginForm extends Component {
     }
 
     return (
-      <Button onPress={this.onButtonPress.bind(this)}>
-        Login
+      <Button
+      onPress={this.onButtonPress.bind(this)}
+      block
+      large
+      iconLeft
+      >
+      <Icon name='construct' />
+      <Text>Sign In</Text>
       </Button>
     );
   }
 
   render() {
     return (
-      <Card>
-        <CardSection>
-          <Input
-            label="Email"
-            placeholder="email@gmail.com"
-            onChangeText={this.onEmailChange.bind(this)}
-            value={this.props.email}
-          />
-        </CardSection>
-
-        <CardSection>
-          <Input
-            secureTextEntry
-            label="Password"
-            placeholder="password"
-            onChangeText={this.onPasswordChange.bind(this)}
-            value={this.props.password}
-          />
-        </CardSection>
-
-        <Text style={styles.errorTextStyle}>
-          {this.props.error}
-        </Text>
-
-        <CardSection>
+      <Container>
+       <Content>
+         <Form>
+           <Item floatingLabel >
+             <Label>Email</Label>
+             <Input
+             onChangeText={this.onEmailChange.bind(this)}
+             value={this.props.email}
+             />
+           </Item>
+           <Item floatingLabel last>
+             <Label>Password</Label>
+             <Input
+             secureTextEntry
+             onChangeText={this.onPasswordChange.bind(this)}
+             value={this.props.password}
+             />
+           </Item>
+         </Form>
+         <View style={{ marginTop: 30 }}>
           {this.renderButton()}
-        </CardSection>
-      </Card>
+         </View>
+       </Content>
+     </Container>
     );
   }
 }
-
-const styles = {
-  errorTextStyle: {
-    fontSize: 20,
-    alignSelf: 'center',
-    color: 'red'
-  }
-};
 
 const mapStateToProps = ({ auth }) => {
   const { email, password, error, loading } = auth;
