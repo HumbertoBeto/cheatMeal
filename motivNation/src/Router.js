@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
+import { GoogleSignin } from 'react-native-google-signin';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/RegisterForm';
@@ -37,10 +38,16 @@ const RouterComponent = () => {
         <Scene
         leftTitle="Log Out"
         onLeft={
-        () => firebase.auth().signOut()
-        .then(() => Actions.auth({ type: 'reset' }))
-        .catch((error) => { console.log(error); })
+          () => GoogleSignin.signOut()
+          .then(() => {
+            Actions.auth({ type: 'reset' });
+            console.log('Logged out of Google account');
+          })
         }
+      /*() => firebase.auth().signOut()
+        .then(() => Actions.auth({ type: 'reset' }))
+        .catch((error) => { console.log(error); }) */
+        //}
         key="home"
         component={Home}
         title="MotivNation"

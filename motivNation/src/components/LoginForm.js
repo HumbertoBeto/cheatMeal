@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
+import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 //import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 import { Container,
         Content,
@@ -40,6 +41,7 @@ class LoginForm extends Component {
     GoogleSignin.signIn()
       .then((user) => {
         console.log(user);
+        Actions.main();
       })
       .catch((err) => {
         console.log('WRONG SIGNIN', err);

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { GoogleSignin } from 'react-native-google-signin';
 import { Image } from 'react-native';
 import {
   Container,
@@ -16,14 +17,16 @@ import {
   } from 'native-base';
 
 class MyNation extends Component {
+
   render() {
+    const user = GoogleSignin.currentUser();
     return (
       <Container>
        <Content>
          <Card>
            <CardItem>
              <Left>
-               <Thumbnail source={{ uri: 'https://vignette.wikia.nocookie.net/spongebob/images/e/e5/Pug-cute-dog-pet-animal-1920x1080-1024x576.jpg/revision/latest?cb=20140524180216' }} />
+               <Thumbnail source={{ uri: user.photo }} />
                <Body>
                  <Text>Beto Hernandez</Text>
                  <Text note>Exercised Today!</Text>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import { GoogleSignin } from 'react-native-google-signin';
 import { Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Icon, Text, Container, Content, Thumbnail, View, H2 } from 'native-base';
@@ -7,10 +8,11 @@ import { myGoalsPressed, myToolsPressed, myNationPressed } from '../actions';
 
 class Home extends Component {
   componentWillMount() {
-    const user = firebase.auth().currentUser;
+    //const user = firebase.auth().currentUser;
+    const user = GoogleSignin.currentUser();
 
     if (user != null) {
-      const email = user.email;
+      const email = user.name;
 }
   }
 
@@ -74,15 +76,16 @@ renderButtonB() {
  }
 
     render() {
-      const user = firebase.auth().currentUser;
-      const email = user.email;
+      //const user = firebase.auth().currentUser;
+      const user = GoogleSignin.currentUser();
+      const email = user.name;
     return (
       <Container>
         <Content>
           <View style={{ flex: 1, alignSelf: 'center' }}>
             <H2>You got this { email }!</H2>
             <View style={{ flex: 1, alignSelf: 'center' }}>
-              <Thumbnail style={{ flex: 1 }} large source={{ uri: 'https://vignette.wikia.nocookie.net/spongebob/images/e/e5/Pug-cute-dog-pet-animal-1920x1080-1024x576.jpg/revision/latest?cb=20140524180216' }} />
+              <Thumbnail style={{ flex: 1 }} large source={{ uri: user.photo }} />
               </View>
             </View>
           <View style={{ marginTop: 30 }}>
