@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 import { connect } from 'react-redux';
+//import {GoogleSignin, GoogleSigninButton} from 'react-native-google-signin';
 import { Container,
         Content,
         Form, Item,
@@ -14,6 +16,12 @@ import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Spinner } from './common';
 
 class LoginForm extends Component {
+  componentWillMount() {
+    GoogleSignin.configure({
+      iosClientId: '730448542188-fbhpaa3o9no2bs63nvkhv6ah34sq22qf.apps.googleusercontent.com'
+    });
+  }
+
   onEmailChange(text) {
     this.props.emailChanged(text);
   }
@@ -26,6 +34,16 @@ class LoginForm extends Component {
     const { email, password } = this.props;
 
     this.props.loginUser({ email, password });
+  }
+
+  handleSignInGoogle() {
+    GoogleSignin.signIn()
+      .then((user) => {
+        console.log(user);
+      })
+      .catch((err) => {
+        console.log('WRONG SIGNIN', err);
+      }).done();
   }
 
   renderButton() {
@@ -78,6 +96,13 @@ class LoginForm extends Component {
          <View style={{ marginTop: 30 }}>
           {this.renderButton()}
          </View>
+
+         <GoogleSigninButton
+    style={{ width: 230, height: 48 }}
+    size={GoogleSigninButton.Size.Standard}
+    color={GoogleSigninButton.Color.Dark}
+    onPress={this.handleSignInGoogle()}
+         />
 
        </Content>
      </Container>
