@@ -1,16 +1,34 @@
 import React, { Component } from 'react';
-import { Text, Container, Content, View } from 'native-base';
+import { Container, Content, Form, Item, Input, Label, Button, Text } from 'native-base';
 
 class CalorieForm extends Component {
 
     render() {
     return (
       <Container>
-        <Content>
-          <View style={{ marginTop: 30 }}>
-            <Text>This is the Calorie Calculator view! </Text>
-          </View>
-        </Content>
+     <Content>
+       <Form>
+         <Item floatingLabel>
+           <Label>Age</Label>
+           <Input />
+         </Item>
+         <Item floatingLabel last>
+           <Label>Current Weight</Label>
+           <Input />
+         </Item>
+         <Item floatingLabel last>
+           <Label>Gender</Label>
+           <Input />
+         </Item>
+         <Item floatingLabel last>
+           <Label>Height</Label>
+           <Input />
+         </Item>
+       </Form>
+       <Button block success>
+           <Text>Calculate</Text>
+         </Button>
+     </Content>
       </Container>
     );
   }
