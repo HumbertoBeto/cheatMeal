@@ -38,16 +38,11 @@ const RouterComponent = () => {
         <Scene
         leftTitle="Log Out"
         onLeft={
-          () => GoogleSignin.signOut()
-          .then(() => {
-            Actions.auth({ type: 'reset' });
-            console.log('Logged out of Google account');
-          })
-        }
-      /*() => firebase.auth().signOut()
+         () => GoogleSignin.signOut()
+         //() => firebase.auth().signOut()
         .then(() => Actions.auth({ type: 'reset' }))
-        .catch((error) => { console.log(error); }) */
-        //}
+        .catch((error) => { console.log(error); })
+        }
         key="home"
         component={Home}
         title="MotivNation"

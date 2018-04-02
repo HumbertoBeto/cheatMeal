@@ -67,6 +67,26 @@ export const loginUser = ({ email, password }) => {
   };
 };
 
+export const loginGoogleUser = ({ data }) => {
+  return (dispatch) => {
+    dispatch({ type: LOGIN_USER });
+
+    const credential =
+    firebase.auth.GoogleAuthProvider.credential(data.idToken, data.accessToken);
+    // Login with the credential
+    //Actions.main();
+    firebase.auth().signInWithCredential(credential)
+      .then(user => loginUserSuccess(dispatch, user))
+      .catch(() => loginUserFail(dispatch));
+      //.catch((error) => { console.log(error); });
+        //console.log(error);
+
+        /*firebase.auth().createUserWithEmailAndPassword(email, password)
+          .then(user => loginUserSuccess(dispatch, user))
+          .catch(() => loginUserFail(dispatch)); */
+  };
+};
+
 //for register view create a user
 export const createUser = ({ email, password }) => {
   return (dispatch) => {

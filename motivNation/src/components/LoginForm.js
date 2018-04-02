@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import firebase from 'firebase';
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
@@ -13,7 +14,7 @@ import { Container,
         Text,
         View
       } from 'native-base';
-import { emailChanged, passwordChanged, loginUser } from '../actions';
+import { emailChanged, passwordChanged, loginUser, loginGoogleUser } from '../actions';
 import { Spinner } from './common';
 
 class LoginForm extends Component {
@@ -39,13 +40,24 @@ class LoginForm extends Component {
 
   handleSignInGoogle() {
     GoogleSignin.signIn()
-      .then((user) => {
+      .then((data) => {
+        console.log('I clicked the google button');
+        this.props.loginGoogleUser({ data });
+        // Create a new Firebase credential with the token
+      /*  const credential =
+        firebase.auth.GoogleAuthProvider.credential(data.idToken, data.accessToken);
+        // Login with the credential
+        //Actions.main();
+        return firebase.auth().signInWithCredential(credential); */
+      });
+      /*.then((user) => {
         console.log(user);
-        Actions.main();
+        this.setState({ user });
+        //Actions.main();
       })
       .catch((err) => {
         console.log('WRONG SIGNIN', err);
-      }).done();
+      }); */
   }
 
   renderButton() {
@@ -103,7 +115,7 @@ class LoginForm extends Component {
     style={{ width: 230, height: 48 }}
     size={GoogleSigninButton.Size.Standard}
     color={GoogleSigninButton.Color.Dark}
-    onPress={this.handleSignInGoogle()}
+    onPress={this.handleSignInGoogle.bind(this)}
          />
 
        </Content>
@@ -121,11 +133,11 @@ const styles = {
 };
 
 const mapStateToProps = ({ auth }) => {
-  const { email, password, error, loading } = auth;
+  const { email, password, error, loading, data } = auth;
 
-  return { email, password, error, loading };
+  return { email, password, error, loading, data };
 };
 
 export default connect(mapStateToProps, {
-  emailChanged, passwordChanged, loginUser
+  emailChanged, passwordChanged, loginUser, loginGoogleUser
 })(LoginForm);
