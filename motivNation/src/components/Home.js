@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import ProgressBarClassic from 'react-native-progress-bar-classic';
 import { GoogleSignin } from 'react-native-google-signin';
 import { Dimensions } from 'react-native';
 import { connect } from 'react-redux';
@@ -87,7 +88,13 @@ renderButtonB() {
             <View style={{ flex: 1, alignSelf: 'center' }}>
               <Thumbnail style={{ flex: 1 }} large source={{ uri: user.photo }} />
               </View>
-            </View>
+          </View>
+          <View style={{ marginTop: 20 }}>
+            <ProgressBarClassic
+              progress={50}
+              valueStyle={'balloon'}
+            />
+          </View>
           <View style={{ marginTop: 30 }}>
             {this.renderButtonA()}
             {this.renderButtonB()}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
-import { CheckBox } from 'native-base';
+import { Text, Toucha } from 'react-native';
+import { Button } from 'native-base';
 import { CardSection } from './common';
 
 class ListItems extends Component {
@@ -8,20 +8,23 @@ class ListItems extends Component {
     const { goal_name } = this.props.goal;
 
     return (
-      <CardSection>
-        <CheckBox checked={false} />
-        <Text style={styles.titleStyle}>
-          {goal_name}
-        </Text>
-      </CardSection>
+        <CardSection>
+          <Button bordered dark style={styles.titleStyle}>
+            <Text style={styles.textStyle}>
+            {goal_name}
+            </Text>
+          </Button>
+        </CardSection>
     );
   }
 }
 
 const styles = {
   titleStyle: {
-    fontSize: 25,
-    paddingLeft: 25
+    flex: 1
+  },
+  textStyle: {
+    textAlign: 'center',
   }
 };
 
