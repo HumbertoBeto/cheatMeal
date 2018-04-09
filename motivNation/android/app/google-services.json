@@ -1,0 +1,66 @@
+{
+  "project_info": {
+    "project_number": "730448542188",
+    "firebase_url": "https://motivnation-38d53.firebaseio.com",
+    "project_id": "motivnation-38d53",
+    "storage_bucket": "motivnation-38d53.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730448542188:android:1bb42ec8be82cf3e",
+        "android_client_info": {
+          "package_name": "com.motivnation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "730448542188-sek6ih1lhtc8j141j9fsvnk5u7hqse9j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.motivnation",
+            "certificate_hash": "db4b43bde9f83cfdf63c0aba27cda95345795033"
+          }
+        },
+        {
+          "client_id": "730448542188-egj90flmn31nutil2ug2qm0r4g8vtc83.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "730448542188-maomo8msjl7f538jmknh5l1cldnji8he.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSFqx3WET06khg4IiWUqBalusgwDb-FLI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "730448542188-egj90flmn31nutil2ug2qm0r4g8vtc83.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "730448542188-fbhpaa3o9no2bs63nvkhv6ah34sq22qf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.motivNation"
+              }
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

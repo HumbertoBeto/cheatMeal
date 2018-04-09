@@ -19,8 +19,10 @@ import { Spinner } from './common';
 
 class LoginForm extends Component {
   componentWillMount() {
+    GoogleSignin.hasPlayServices({ autoResolve: true });
     GoogleSignin.configure({
-      iosClientId: '730448542188-fbhpaa3o9no2bs63nvkhv6ah34sq22qf.apps.googleusercontent.com'
+      iosClientId: '730448542188-fbhpaa3o9no2bs63nvkhv6ah34sq22qf.apps.googleusercontent.com',
+      webClientId: '730448542188-egj90flmn31nutil2ug2qm0r4g8vtc83.apps.googleusercontent.com'
     });
   }
 
