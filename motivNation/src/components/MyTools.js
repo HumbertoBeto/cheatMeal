@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { GoogleSignin } from 'react-native-google-signin';
 import { connect } from 'react-redux';
-import { Button, Icon, Text, Container, Content, View } from 'native-base';
+import { ImageBackground } from 'react-native';
+import { Button, Icon, Text, Container, Content, View, H2, Thumbnail } from 'native-base';
 import { exerciseDataPressed,
         foodDataPressed,
         hiitTimerPressed,
@@ -25,9 +27,19 @@ class MyTools extends Component {
   }
 
   render() {
+    const user = GoogleSignin.currentUser();
     return (
+      <ImageBackground
+        source={require('./images/mainpic.jpg')}
+        style={{ width: '100%', height: '100%' }}
+      >
       <Container>
         <Content>
+        <View style={{ flex: 1, alignSelf: 'center', marginTop: 15, textAlign: 'center' }}>
+          <H2 style={{ color: '#f2b335' }}>
+          Tools to reach your goals!
+          </H2>
+        </View>
           <View>
             <Button
               block
@@ -35,7 +47,7 @@ class MyTools extends Component {
               iconLeft
               success
               onPress={this.onExerciseDataButtonPressed.bind(this)}
-              style={{ marginTop: 10 }}
+              style={{ marginTop: 20 }}
             >
               <Icon name='clipboard' />
               <Text> Exercise Database </Text>
@@ -46,7 +58,7 @@ class MyTools extends Component {
             large
             iconLeft
             onPress={this.onHiitTimerButtonPressed.bind(this)}
-            style={{ marginTop: 10 }}
+            style={{ marginTop: 50 }}
             >
               <Icon name='construct' />
               <Text>HIIT Timer</Text>
@@ -58,7 +70,7 @@ class MyTools extends Component {
               iconLeft
               warning
               onPress={this.onFoodDataButtonPressed.bind(this)}
-              style={{ marginTop: 10 }}
+              style={{ marginTop: 50 }}
             >
               <Icon name='construct' />
               <Text>Food Database</Text>
@@ -70,7 +82,7 @@ class MyTools extends Component {
               iconLeft
               danger
               onPress={this.onCalorieCalcButtonPressed.bind(this)}
-              style={{ marginTop: 10 }}
+              style={{ marginTop: 50 }}
             >
               <Icon name='construct' />
               <Text>Calorie Calculator</Text>
@@ -79,6 +91,7 @@ class MyTools extends Component {
           </View>
         </Content>
       </Container>
+    </ImageBackground>
     );
   }
 }

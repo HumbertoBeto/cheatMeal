@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import ProgressBarClassic from 'react-native-progress-bar-classic';
 import { GoogleSignin } from 'react-native-google-signin';
-import { Dimensions } from 'react-native';
+import { Dimensions, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Icon, Text, Container, Content, Thumbnail, View, H2 } from 'native-base';
 import { myGoalsPressed, myToolsPressed, myNationPressed } from '../actions';
@@ -37,7 +37,7 @@ renderButtonC() {
     iconLeft
     warning
     onPress={this.onNationButtonPressed.bind(this)}
-    style={{ marginTop: 10 }}
+    style={{ marginTop: 20 }}
     >
       <Icon name='contacts' />
       <Text>My Nation</Text>
@@ -52,7 +52,7 @@ renderButtonB() {
     large
     iconLeft
     onPress={this.onToolsButtonPressed.bind(this)}
-    style={{ marginTop: 10 }}
+    style={{ marginTop: 20 }}
     >
       <Icon name='construct' />
       <Text>My Tools</Text>
@@ -68,7 +68,7 @@ renderButtonB() {
      iconLeft
      success
      onPress={this.onGoalsButtonPressed.bind(this)}
-     style={{ marginTop: 10 }}
+     style={{ marginTop: 20 }}
      >
        <Icon name='clipboard' />
        <Text> My Goals </Text>
@@ -81,11 +81,15 @@ renderButtonB() {
       const user = GoogleSignin.currentUser();
       const email = user.name;
     return (
+      <ImageBackground
+        source={require('./images/mainpic.jpg')}
+        style={{ width: '100%', height: '100%' }}
+      >
       <Container>
         <Content>
-          <View style={{ flex: 1, alignSelf: 'center' }}>
-            <H2>You got this { email }!</H2>
-            <View style={{ flex: 1, alignSelf: 'center' }}>
+          <View style={{ flex: 1, alignSelf: 'center', marginTop: 15 }}>
+            <H2 style={{ color: '#f2b335' }}>You got this { email }!</H2>
+            <View style={{ flex: 1, alignSelf: 'center', marginTop: 10  }}>
               <Thumbnail style={{ flex: 1 }} large source={{ uri: user.photo }} />
               </View>
           </View>
@@ -102,6 +106,7 @@ renderButtonB() {
           </View>
         </Content>
       </Container>
+    </ImageBackground>
     );
   }
 }

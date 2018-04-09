@@ -18,13 +18,12 @@ import CalorieForm from './components/CalorieForm';
 const RouterComponent = () => {
   return (
     // login scene
-    <Router>
+    <Router titleStyle={{ color: 'white' }} navigationBarStyle={{ backgroundColor: '#4db2d1' }}>
       <Scene key="root" hideNavBar>
 
         <Scene key="auth">
           <Scene
-          rightTitle="Register?"
-          onRight={() => Actions.register()}
+          //rightTitle="Register?"
           key="login"
           component={LoginForm}
           title="Login"

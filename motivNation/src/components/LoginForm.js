@@ -71,6 +71,18 @@ class LoginForm extends Component {
       }); */
   }
 
+  renderRegisterButton() {
+    if (this.props.loading) {
+      return <Spinner color='green' />;
+    }
+
+    return (
+      <Button transparent warning onPress={this.handleSignInGoogle.bind(this)}>
+        <Text>    No Account? Register! </Text>
+      </Button>
+    );
+  }
+
   renderButton() {
     if (this.props.loading) {
       return <Spinner color='green' />;
@@ -89,18 +101,19 @@ class LoginForm extends Component {
   render() {
     return (
       <ImageBackground
-        source={require('./images/loginpic2.jpg')}
+        source={require('./images/loginpic.jpg')}
         style={{ width: '100%', height: '100%' }}
       >
       <Container
       style={{
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 230
+        marginTop: 50
       }}
       >
        <Content>
          {this.renderButton()}
+         {this.renderRegisterButton()}
        </Content>
      </Container>
      </ImageBackground>

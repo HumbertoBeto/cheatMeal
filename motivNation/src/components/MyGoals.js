@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ListView } from 'react-native';
+import { ListView, ImageBackground } from 'react-native';
 import { goalFetch } from '../actions';
 import ListItems from './ListItems';
 
