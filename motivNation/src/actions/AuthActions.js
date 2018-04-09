@@ -51,13 +51,13 @@ export const passwordChanged = (text) => {
 };
 
 //login existing user
-export const loginUser = ({ email, password }) => {
+export const loginUser = () => {
   return (dispatch) => {
     dispatch({ type: LOGIN_USER });
 
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(user => loginUserSuccess(dispatch, user))
-      .catch(() => loginUserFail(dispatch));
+  //  firebase.auth().signInWithEmailAndPassword(email, password)
+  //    .then(user => loginUserSuccess(dispatch, user))
+    //  .catch(() => loginUserFail(dispatch));
       //.catch((error) => { console.log(error); });
         //console.log(error);
 

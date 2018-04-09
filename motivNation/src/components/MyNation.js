@@ -1,63 +1,53 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
-import { GoogleSignin } from 'react-native-google-signin';
-import { Image } from 'react-native';
-import {
-  Container,
-  Header,
-  Content,
-  Card,
-  CardItem,
-  Thumbnail,
-  Text,
-  Button,
-  Icon,
-  Left,
-  Body,
-  Right
-  } from 'native-base';
+import { connect } from 'react-redux';
+import { ListView } from 'react-native';
+import { goalFetch } from '../actions';
+import PostItems from './PostItems';
+
 
 class MyNation extends Component {
 
+  componentWillMount() {
+    this.props.goalFetch();
+    this.createDataSource(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.createDataSource(nextProps);
+  }
+
+  createDataSource({ goals }) {
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    });
+
+    this.dataSource = ds.cloneWithRows(goals);
+  }
+
+  renderRow(goal) {
+    //const user = GoogleSignin.currentUser();
+    return <PostItems goal={goal} />;
+  }
+
   render() {
-    const user = GoogleSignin.currentUser();
+    //const user = GoogleSignin.currentUser();
+    console.log(this.props);
     return (
-      <Container>
-       <Content>
-         <Card>
-           <CardItem>
-             <Left>
-               <Thumbnail source={{ uri: user.photo }} />
-               <Body>
-                 <Text>Beto Hernandez</Text>
-                 <Text note>Exercised Today!</Text>
-               </Body>
-             </Left>
-           </CardItem>
-           <CardItem cardBody>
-             <Image source={{ uri: 'https://cdn10.bostonmagazine.com/wp-content/uploads/2013/07/treadmilllarge.jpg' }} style={{ height: 200, width: null, flex: 1 }} />
-           </CardItem>
-           <CardItem>
-             <Left>
-               <Button transparent>
-                 <Icon active name="thumbs-up" />
-                 <Text>12 Likes</Text>
-               </Button>
-             </Left>
-             <Body>
-               <Button transparent>
-                 <Icon active name="chatbubbles" />
-                 <Text>4 Comments</Text>
-               </Button>
-             </Body>
-             <Right>
-               <Text>11h ago</Text>
-             </Right>
-           </CardItem>
-         </Card>
-       </Content>
-     </Container>
+      <ListView
+        enableEmptySections
+        dataSource={this.dataSource}
+        renderRow={this.renderRow}
+      />
     );
   }
 }
 
-export default MyNation;
+const mapStateToProps = state => {
+  const goals = _.map(state.goals, (val, uid) => {
+    return { ...val, uid };
+  });
+  return { goals };
+};
+
+export default connect(mapStateToProps, { goalFetch })(MyNation);

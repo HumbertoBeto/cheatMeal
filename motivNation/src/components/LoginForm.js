@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import { ImageBackground, Image } from 'react-native'
 import { GoogleSignin, GoogleSigninButton } from 'react-native-google-signin';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
@@ -12,10 +13,11 @@ import { Container,
         Button,
         Icon,
         Text,
-        View
+        View,
+        Spinner
       } from 'native-base';
 import { emailChanged, passwordChanged, loginUser, loginGoogleUser } from '../actions';
-import { Spinner } from './common';
+//import { Spinner } from './common';
 
 class LoginForm extends Component {
   componentWillMount() {
@@ -35,12 +37,19 @@ class LoginForm extends Component {
   }
 
   onButtonPress() {
-    const { email, password } = this.props;
+    //const { email, password } = this.props;
 
-    this.props.loginUser({ email, password });
+    this.props.loginUser();
+  }
+
+  turnOnSpinner() {
+    if (this.props.loading) {
+      return <Spinner />;
+    }
   }
 
   handleSignInGoogle() {
+    //this.props.loginUser();
     GoogleSignin.signIn()
       .then((data) => {
         console.log('I clicked the google button');
@@ -64,68 +73,42 @@ class LoginForm extends Component {
 
   renderButton() {
     if (this.props.loading) {
-      return <Spinner size="large" />;
+      return <Spinner color='green' />;
     }
 
     return (
-      <Button
-      onPress={this.onButtonPress.bind(this)}
-      block
-      large
-      iconLeft
-      >
-      <Icon name='construct' />
-      <Text>Sign In</Text>
-      </Button>
+      <GoogleSigninButton
+ style={{ width: 230, height: 48 }}
+ size={GoogleSigninButton.Size.Standard}
+ color={GoogleSigninButton.Color.Dark}
+ onPress={this.handleSignInGoogle.bind(this)}
+      />
     );
   }
 
   render() {
     return (
-      <Container>
+      <ImageBackground
+        source={require('./images/loginpic2.jpg')}
+        style={{ width: '100%', height: '100%' }}
+      >
+      <Container
+      style={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 230
+      }}
+      >
        <Content>
-         <Form>
-
-           <Item floatingLabel >
-             <Label>Email</Label>
-             <Input
-             onChangeText={this.onEmailChange.bind(this)}
-             value={this.props.email}
-             />
-           </Item>
-
-           <Item floatingLabel last>
-             <Label>Password</Label>
-             <Input
-             secureTextEntry
-             onChangeText={this.onPasswordChange.bind(this)}
-             value={this.props.password}
-             />
-           </Item>
-
-         </Form>
-
-         <Text style={styles.errorTextStyle}>
-          {this.props.error}
-        </Text>
-
-         <View style={{ marginTop: 30 }}>
-          {this.renderButton()}
-         </View>
-
-         <GoogleSigninButton
-    style={{ width: 230, height: 48 }}
-    size={GoogleSigninButton.Size.Standard}
-    color={GoogleSigninButton.Color.Dark}
-    onPress={this.handleSignInGoogle.bind(this)}
-         />
-
+         {this.renderButton()}
        </Content>
      </Container>
+     </ImageBackground>
     );
   }
 }
 
+//alignSelf: 'center' }
 const styles = {
   errorTextStyle: {
     fontSize: 20,
