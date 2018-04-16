@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
-import { Container, Header, Item, Input, Icon, Button, Text } from 'native-base';
+import { Container, Icon, Button, Text, Content, Footer, FooterTab } from 'native-base';
 
 class FoodSearch extends Component {
 
     render() {
     return (
       <Container>
-          <Header searchBar rounded>
-            <Item>
-              <Icon name="ios-search" />
-              <Input placeholder="Search Food" />
-              <Icon name="ios-people" />
-            </Item>
-            <Button transparent>
-              <Text>Find!</Text>
+        <Content />
+        <Footer>
+          <FooterTab>
+            <Button vertical>
+              <Icon name="apps" />
+              <Text>BreakFast</Text>
             </Button>
-          </Header>
-        </Container>
+            <Button vertical>
+              <Icon name="apps" />
+              <Text>Lunch</Text>
+            </Button>
+            <Button vertical active>
+              <Icon active name="apps" />
+              <Text>Dinner</Text>
+            </Button>
+          </FooterTab>
+        </Footer>
+      </Container>
     );
   }
 }
