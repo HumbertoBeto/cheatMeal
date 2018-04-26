@@ -113,6 +113,14 @@ const loginUserSuccess = (dispatch, user) => {
     type: LOGIN_USER_SUCCESS,
     payload: user
   });
-
+// try to creaete
+  const { currentUser } = firebase.auth();
   Actions.main();
+  firebase.database().ref(`/users/${currentUser.uid}`).set(
+    {
+    points: 0
+    }
+  ).then(() => {
+    console.log('Created points in backend');
+  });
 };

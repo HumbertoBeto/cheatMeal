@@ -73,7 +73,7 @@ class LoginForm extends Component {
 
   renderRegisterButton() {
     if (this.props.loading) {
-      return <Spinner color='green' />;
+      return <Spinner color='blue' />;
     }
 
     return (
@@ -88,7 +88,7 @@ class LoginForm extends Component {
 
   renderButton() {
     if (this.props.loading) {
-      return <Spinner color='green' />;
+      return <Spinner color='blue' />;
     }
 
     return (

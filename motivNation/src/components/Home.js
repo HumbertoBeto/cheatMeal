@@ -79,7 +79,7 @@ renderButtonB() {
     render() {
       //const user = firebase.auth().currentUser;
       const user = GoogleSignin.currentUser();
-      const email = user.name;
+      //const email = user.name;
     return (
       <ImageBackground
         source={require('./images/mainpic.jpg')}
@@ -88,8 +88,9 @@ renderButtonB() {
       <Container>
         <Content>
           <View style={{ flex: 1, alignSelf: 'center', marginTop: 15 }}>
-            <H2 style={{ color: '#f2b335' }}>You got this { email }!</H2>
-            <View style={{ flex: 1, alignSelf: 'center', marginTop: 10  }}>
+            <H2 style={{ color: 'red', fontWeight: 'bold' }}>Meet those GOALS</H2>
+            <H2 style={{ color: 'white', fontWeight: 'bold' }}> { user.name }! </H2>
+            <View style={{ flex: 1, alignSelf: 'center', marginTop: 10 }}>
               <Thumbnail style={{ flex: 1 }} large source={{ uri: user.photo }} />
               </View>
           </View>
