@@ -77,8 +77,11 @@ class LoginForm extends Component {
     }
 
     return (
-      <Button transparent warning onPress={this.handleSignInGoogle.bind(this)}>
-        <Text>    No Account? Register! </Text>
+      <Button
+      transparent warning
+      onPress={this.handleSignInGoogle.bind(this)}
+      >
+        <Text style={{ color: 'white', fontWeight: 'bold' }}>    No Account? Register! </Text>
       </Button>
     );
   }
@@ -108,7 +111,7 @@ class LoginForm extends Component {
       style={{
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 50
+        marginTop: 120
       }}
       >
        <Content>
