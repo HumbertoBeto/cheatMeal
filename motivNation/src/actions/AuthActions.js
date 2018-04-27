@@ -87,6 +87,26 @@ export const loginGoogleUser = ({ data }) => {
   };
 };
 
+//for registration
+export const registerGoogleUser = ({ data }) => {
+  return (dispatch) => {
+    dispatch({ type: LOGIN_USER });
+
+    const credential =
+    firebase.auth.GoogleAuthProvider.credential(data.idToken, data.accessToken);
+    // Login with the credential
+    //Actions.main();
+    firebase.auth().signInWithCredential(credential)
+      .then(user => registerUserSuccess(dispatch, user))
+      .catch(() => loginUserFail(dispatch));
+      //.catch((error) => { console.log(error); });
+        //console.log(error);
+
+        /*firebase.auth().createUserWithEmailAndPassword(email, password)
+          .then(user => loginUserSuccess(dispatch, user))
+          .catch(() => loginUserFail(dispatch)); */
+  };
+};
 //for register view create a user
 export const createUser = ({ email, password }) => {
   return (dispatch) => {
@@ -113,10 +133,20 @@ const loginUserSuccess = (dispatch, user) => {
     type: LOGIN_USER_SUCCESS,
     payload: user
   });
+  Actions.main();
+};
+
+//to register user
+const registerUserSuccess = (dispatch, user) => {
+  dispatch({
+    type: LOGIN_USER_SUCCESS,
+    payload: user
+  });
 // try to creaete
   const { currentUser } = firebase.auth();
   Actions.main();
-  firebase.database().ref(`/users/${currentUser.uid}`).set(
+  //create points variable for new user
+  firebase.database().ref(`/users/${currentUser.uid}/userData`).set(
     {
     points: 0
     }

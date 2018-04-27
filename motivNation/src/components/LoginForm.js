@@ -16,7 +16,7 @@ import { Container,
         View,
         Spinner
       } from 'native-base';
-import { emailChanged, passwordChanged, loginUser, loginGoogleUser } from '../actions';
+import { emailChanged, passwordChanged, loginUser, loginGoogleUser, registerGoogleUser } from '../actions';
 //import { Spinner } from './common';
 
 class LoginForm extends Component {
@@ -52,8 +52,31 @@ class LoginForm extends Component {
     //this.props.loginUser();
     GoogleSignin.signIn()
       .then((data) => {
-        console.log('I clicked the google button');
+        console.log('I clicked the sign in button');
         this.props.loginGoogleUser({ data });
+        // Create a new Firebase credential with the token
+      /*  const credential =
+        firebase.auth.GoogleAuthProvider.credential(data.idToken, data.accessToken);
+        // Login with the credential
+        //Actions.main();
+        return firebase.auth().signInWithCredential(credential); */
+      });
+      /*.then((user) => {
+        console.log(user);
+        this.setState({ user });
+        //Actions.main();
+      })
+      .catch((err) => {
+        console.log('WRONG SIGNIN', err);
+      }); */
+  }
+
+  handleRegisterInGoogle() {
+    //this.props.loginUser();
+    GoogleSignin.signIn()
+      .then((data) => {
+        console.log('I clicked the register button');
+        this.props.registerGoogleUser({ data });
         // Create a new Firebase credential with the token
       /*  const credential =
         firebase.auth.GoogleAuthProvider.credential(data.idToken, data.accessToken);
@@ -79,7 +102,7 @@ class LoginForm extends Component {
     return (
       <Button
       transparent warning
-      onPress={this.handleSignInGoogle.bind(this)}
+      onPress={this.handleRegisterInGoogle.bind(this)}
       >
         <Text style={{ color: 'white', fontWeight: 'bold' }}>    No Account? Register! </Text>
       </Button>
@@ -116,7 +139,9 @@ class LoginForm extends Component {
       >
        <Content>
          {this.renderButton()}
+        <View style={{ marginTop: 100 }}>
          {this.renderRegisterButton()}
+        </View>
        </Content>
      </Container>
      </ImageBackground>
@@ -140,5 +165,5 @@ const mapStateToProps = ({ auth }) => {
 };
 
 export default connect(mapStateToProps, {
-  emailChanged, passwordChanged, loginUser, loginGoogleUser
+  emailChanged, passwordChanged, loginUser, loginGoogleUser, registerGoogleUser
 })(LoginForm);

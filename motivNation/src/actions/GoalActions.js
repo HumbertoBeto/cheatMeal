@@ -11,6 +11,7 @@ export const goalUpdate = ({ prop, value }) => {
 
 export const goalCreate = ({ goal_name }) => {
   const { currentUser } = firebase.auth();
+  console.log(currentUser);
 
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/goals`)
@@ -18,6 +19,9 @@ export const goalCreate = ({ goal_name }) => {
       .then(() => {
         dispatch({ type: GOAL_CREATE });
         Actions.pop();
+        firebase.database().ref(`/users/${currentUser.uid}/userData`).update({
+          points: 100
+        });
       });
   };
 };
