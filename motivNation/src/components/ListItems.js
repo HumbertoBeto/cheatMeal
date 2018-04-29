@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
-import { Button } from 'native-base';
-import { CardSection } from './common';
+//import { Button } from 'native-base';
+import { CardSection, Confirm, Card, Button } from './common';
 
 class ListItems extends Component {
-
+  state = { showModal: false };
 
 onButtonPress() {
 
@@ -14,16 +14,25 @@ onButtonPress() {
     const { goal_name } = this.props.goal;
 
     return (
+      <Card>
         <CardSection>
-          <Button
-          bordered dark style={styles.titleStyle}
-          onPress={this.onButtonPress.bind(this)}
-          >
-            <Text style={styles.textStyle}>
+          <Button>
             {goal_name}
-            </Text>
           </Button>
         </CardSection>
+
+        <CardSection>
+          <Button onPress={() => this.setState({ showModal: !this.state.showModal })}>
+            <Text>Finished it?</Text>
+          </Button>
+        </CardSection>
+
+        <Confirm
+          visible={this.state.showModal}
+        >
+          Did you complete this goal?
+        </Confirm>
+      </Card>
 
     );
   }
