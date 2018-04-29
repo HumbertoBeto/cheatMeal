@@ -5,9 +5,10 @@ import { GoogleSignin } from 'react-native-google-signin';
 import { Dimensions, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Icon, Text, Container, Content, Thumbnail, View, H2 } from 'native-base';
-import { myGoalsPressed, myToolsPressed, myNationPressed } from '../actions';
+import { myGoalsPressed, myToolsPressed, myNationPressed, fetchUserPoints } from '../actions';
 
 class Home extends Component {
+
   componentWillMount() {
     //const user = firebase.auth().currentUser;
     const user = GoogleSignin.currentUser();
@@ -15,6 +16,10 @@ class Home extends Component {
     if (user != null) {
       const email = user.name;
 }
+  }
+
+  componentDidMount() {
+    this.props.fetchUserPoints();
   }
 
   onToolsButtonPressed() {
@@ -96,7 +101,7 @@ renderButtonB() {
           </View>
           <View style={{ marginTop: 20 }}>
             <ProgressBarClassic
-              progress={50}
+              progress={this.props.points}
               valueStyle={'balloon'}
             />
           </View>
@@ -113,10 +118,10 @@ renderButtonB() {
 }
 
 const mapStateToProps = ({ auth }) => {
-  const { email, password, error, loading } = auth;
+  const { email, password, error, loading, points } = auth;
 
-  return { email, password, error, loading };
+  return { email, password, error, loading, points };
 };
 
 export default connect(mapStateToProps,
-  { myGoalsPressed, myNationPressed, myToolsPressed })(Home);
+  { myGoalsPressed, myNationPressed, myToolsPressed, fetchUserPoints })(Home);

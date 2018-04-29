@@ -9,8 +9,24 @@ import {
   CREATE_USER,
   MY_GOALS_PRESSED,
   MY_TOOLS_PRESSED,
-  MY_NATION_PRESSED
+  MY_NATION_PRESSED,
+  FETCH_USER_POINTS_SUCCESS
 } from './types';
+
+
+export const fetchUserPoints = () => {
+  const { currentUser } = firebase.auth();
+      return dispatch => {
+       firebase.database()
+        .ref(`users/${currentUser.uid}/userData/`)
+        .on('value', snapshot => {
+          dispatch({
+            type: FETCH_USER_POINTS_SUCCESS,
+            payload: snapshot.val().points
+            });
+          });
+        };
+};
 
 export const myGoalsPressed = () => {
   Actions.main();

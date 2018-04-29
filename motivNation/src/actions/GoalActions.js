@@ -20,7 +20,7 @@ export const goalCreate = ({ goal_name }) => {
         dispatch({ type: GOAL_CREATE });
         Actions.pop();
         firebase.database().ref(`/users/${currentUser.uid}/userData`).update({
-          points: 100
+          points: 40
         });
       });
   };

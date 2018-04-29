@@ -15,3 +15,4 @@ export const FOOD_DATA_PRESSED = 'food_data_pressed';
 export const HIIT_TIMER_PRESSED = 'hiit_timer_pressed';
 export const CALORIE_CALC_PRESSED = 'calorie_calc_pressed';
 export const EXERCISE_SEARCH_BUTTON_PRESSED = 'exercise_search_button_pressed';
+export const FETCH_USER_POINTS_SUCCESS = 'fetch_user_points_success';
