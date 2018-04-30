@@ -10,7 +10,9 @@ import {
   MY_GOALS_PRESSED,
   MY_TOOLS_PRESSED,
   MY_NATION_PRESSED,
-  FETCH_USER_POINTS_SUCCESS
+  FETCH_USER_POINTS_SUCCESS,
+  REWARD_SHOW,
+  REWARD_DONT_SHOW
 } from './types';
 
 
@@ -26,6 +28,32 @@ export const fetchUserPoints = () => {
             });
           });
         };
+};
+
+export const rewardSwitch = () => {
+
+  const { currentUser } = firebase.auth();
+  let curPoints;
+  firebase.database()
+   .ref(`users/${currentUser.uid}/userData/`)
+   .on('value', snapshot => {
+     curPoints = snapshot.val().points;
+    });
+
+    if (curPoints > 99) {
+      console.log('it is 100 so show it');
+      return {
+        type: REWARD_SHOW,
+      };
+    }
+
+    if (curPoints !== 100) {
+      console.log('it is not 100 so dont show it');
+      return {
+        type: REWARD_DONT_SHOW,
+      };
+    }
+
 };
 
 export const myGoalsPressed = () => {

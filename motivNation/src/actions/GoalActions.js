@@ -19,9 +19,9 @@ export const goalCreate = ({ goal_name }) => {
       .then(() => {
         dispatch({ type: GOAL_CREATE });
         Actions.pop();
-        firebase.database().ref(`/users/${currentUser.uid}/userData`).update({
-          points: 40
-        });
+        //firebase.database().ref(`/users/${currentUser.uid}/userData`).update({
+        //  points: 40
+      //  });
       });
   };
 };
@@ -34,5 +34,31 @@ export const goalFetch = () => {
       .on('value', snapshot => {
         dispatch({ type: GOAL_FETCH_SUCCESS, payload: snapshot.val() });
       });
+  };
+};
+
+export const goalDelete = ({ uid }) => {
+  const { currentUser } = firebase.auth();
+  let curPoints;
+  firebase.database()
+   .ref(`users/${currentUser.uid}/userData/`)
+   .on('value', snapshot => {
+     curPoints = snapshot.val().points + 10;
+    });
+
+    if (curPoints > 100) {
+      curPoints = 100;
+    }
+    
+  firebase.database().ref(`/users/${currentUser.uid}/userData`).update({
+    points: curPoints
+  });
+
+  return () => {
+    firebase.database().ref(`/users/${currentUser.uid}/goals/${uid}`)
+    .remove()
+    .then(() => {
+      Actions.employeeList({ type: 'reset' });
+    });
   };
 };

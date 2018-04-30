@@ -5,9 +5,12 @@ import { GoogleSignin } from 'react-native-google-signin';
 import { Dimensions, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Icon, Text, Container, Content, Thumbnail, View, H2 } from 'native-base';
-import { myGoalsPressed, myToolsPressed, myNationPressed, fetchUserPoints } from '../actions';
+import { RewardConfirm, MyView } from './common';
+import { myGoalsPressed, myToolsPressed, myNationPressed, fetchUserPoints, rewardSwitch } from '../actions';
 
 class Home extends Component {
+state = { showModal: false, isHidden: true };
+
 
   componentWillMount() {
     //const user = firebase.auth().currentUser;
@@ -20,6 +23,11 @@ class Home extends Component {
 
   componentDidMount() {
     this.props.fetchUserPoints();
+    this.props.rewardSwitch();
+  }
+
+  onDecline() {
+    this.setState({ showModal: false });
   }
 
   onToolsButtonPressed() {
@@ -46,6 +54,23 @@ renderButtonC() {
     >
       <Icon name='contacts' />
       <Text>My Nation</Text>
+    </Button>
+  );
+}
+
+renderRewardButton() {
+  return (
+    <Button
+    block
+    large
+    iconLeft
+    danger
+    onPress={() => this.setState({ showModal: !this.state.showModal })}
+    style={{ marginTop: 20 }}
+    visible={false}
+    >
+      <Icon name='contacts' />
+      <Text>Redeem Cheat Meal!</Text>
     </Button>
   );
 }
@@ -85,6 +110,10 @@ renderButtonB() {
       //const user = firebase.auth().currentUser;
       const user = GoogleSignin.currentUser();
       //const email = user.name;
+      if (this.props.points > 99) {
+        console.log('Show the button!');
+        this.state.isHidden = false;
+      }
     return (
       <ImageBackground
         source={require('./images/mainpic.jpg')}
@@ -109,7 +138,17 @@ renderButtonB() {
             {this.renderButtonA()}
             {this.renderButtonB()}
             {this.renderButtonC()}
+            <MyView hide={this.state.isHidden}>
+            {this.renderRewardButton()}
+            </MyView>
           </View>
+          <RewardConfirm
+            visible={this.state.showModal}
+            //onAccept={this.onAccept.bind(this)}
+            onDecline={this.onDecline.bind(this)}
+          >
+            Do you want to redeem your reward?
+          </RewardConfirm>
         </Content>
       </Container>
     </ImageBackground>
@@ -118,10 +157,10 @@ renderButtonB() {
 }
 
 const mapStateToProps = ({ auth }) => {
-  const { email, password, error, loading, points } = auth;
+  const { email, password, error, loading, points, rewardHidden } = auth;
 
-  return { email, password, error, loading, points };
+  return { email, password, error, loading, points, rewardHidden };
 };
 
 export default connect(mapStateToProps,
-  { myGoalsPressed, myNationPressed, myToolsPressed, fetchUserPoints })(Home);
+  { myGoalsPressed, myNationPressed, myToolsPressed, fetchUserPoints, rewardSwitch })(Home);

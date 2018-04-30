@@ -5,7 +5,9 @@ import {
   LOGIN_USER_FAIL,
   LOGIN_USER,
   CREATE_USER,
-  FETCH_USER_POINTS_SUCCESS
+  FETCH_USER_POINTS_SUCCESS,
+  REWARD_SHOW,
+  REWARD_DONT_SHOW
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -15,7 +17,8 @@ const INITIAL_STATE = {
   error: '',
   loading: false,
   data: null,
-  points: 0
+  points: 0,
+  rewardHidden: false
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -32,8 +35,12 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, ...INITIAL_STATE, user: action.payload };
     case LOGIN_USER_FAIL:
       return { ...state, error: 'Authentication Failed.', password: '', loading: false };
-      case FETCH_USER_POINTS_SUCCESS:
+    case FETCH_USER_POINTS_SUCCESS:
         return { ...state, points: action.payload };
+    case REWARD_SHOW:
+            return { ...state, rewardHidden: false };
+    case REWARD_DONT_SHOW:
+            return { ...state, rewardHidden: true };
     default:
       return state;
   }
