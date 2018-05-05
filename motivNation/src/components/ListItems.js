@@ -28,14 +28,8 @@ onButtonPress() {
     return (
       <Card>
         <CardSection>
-          <Button>
-            {goal_name}
-          </Button>
-        </CardSection>
-
-        <CardSection>
           <Button onPress={() => this.setState({ showModal: !this.state.showModal })}>
-            <Text>Finished it?</Text>
+            {goal_name}
           </Button>
         </CardSection>
 
@@ -51,6 +45,12 @@ onButtonPress() {
     );
   }
 }
+
+/* <CardSection>
+    <Button onPress={() => this.setState({ showModal: !this.state.showModal })}>
+      <Text>Finished it?</Text>
+    </Button>
+  </CardSection> */
 
 const styles = {
   titleStyle: {
