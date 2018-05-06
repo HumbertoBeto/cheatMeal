@@ -36,7 +36,7 @@ class MyTools extends Component {
       <Container>
         <Content>
         <View style={{ flex: 1, alignSelf: 'center', marginTop: 15 }}>
-          <H2 style={{ color: '#f2b335' }}>
+          <H2 style={{ color: 'black' }}>
           Tools to reach your goals!
           </H2>
         </View>

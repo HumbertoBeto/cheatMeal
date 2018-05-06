@@ -4,7 +4,7 @@ import ProgressBarClassic from 'react-native-progress-bar-classic';
 import { GoogleSignin } from 'react-native-google-signin';
 import { Dimensions, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
-import { Button, Icon, Text, Container, Content, Thumbnail, View, H2 } from 'native-base';
+import { Button, Icon, Text, Container, Content, Thumbnail, View, H2, H1 } from 'native-base';
 import { RewardConfirm, MyView } from './common';
 import { myGoalsPressed, myToolsPressed, myNationPressed, fetchUserPoints, rewardSwitch } from '../actions';
 
@@ -30,6 +30,10 @@ state = { showModal: false, isHidden: true };
     this.setState({ showModal: false });
   }
 
+  onAccept() {
+    this.props.resetPoints(); //implement this sets points to 0
+    this.setState({ showModal: false });
+  }
   onToolsButtonPressed() {
   this.props.myToolsPressed();
   }
@@ -122,8 +126,7 @@ renderButtonB() {
       <Container>
         <Content>
           <View style={{ flex: 1, alignSelf: 'center', marginTop: 15 }}>
-            <H2 style={{ color: 'red', fontWeight: 'bold' }}>Meet those GOALS</H2>
-            <H2 style={{ color: 'white', fontWeight: 'bold' }}> { user.name }! </H2>
+            <H1 style={{ color: 'black', fontWeight: 'bold' }}> { user.name } </H1>
             <View style={{ flex: 1, alignSelf: 'center', marginTop: 10 }}>
               <Thumbnail style={{ flex: 1 }} large source={{ uri: user.photo }} />
               </View>
@@ -144,7 +147,7 @@ renderButtonB() {
           </View>
           <RewardConfirm
             visible={this.state.showModal}
-            //onAccept={this.onAccept.bind(this)}
+            onAccept={this.onAccept.bind(this)}
             onDecline={this.onDecline.bind(this)}
           >
             Do you want to redeem your reward?
