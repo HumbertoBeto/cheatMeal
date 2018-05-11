@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ListView } from 'react-native';
-import { goalFetch } from '../actions';
+import { postFetch, goalFetch } from '../actions';
 import PostItems from './PostItems';
 
 
@@ -10,6 +10,7 @@ class MyNation extends Component {
 
   componentWillMount() {
     this.props.goalFetch();
+    this.props.postFetch();
     this.createDataSource(this.props);
   }
 
@@ -35,6 +36,7 @@ class MyNation extends Component {
     console.log(this.props);
     return (
       <ListView
+        style={{ marginBottom: -2 }}
         enableEmptySections
         dataSource={this.dataSource}
         renderRow={this.renderRow}
@@ -50,4 +52,4 @@ const mapStateToProps = state => {
   return { goals };
 };
 
-export default connect(mapStateToProps, { goalFetch })(MyNation);
+export default connect(mapStateToProps, { postFetch, goalFetch })(MyNation);

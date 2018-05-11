@@ -10,3 +10,5 @@ export default combineReducers({
   goals: GoalReducer,
   exercise: ExerciseReducer
 });
+
+console.disableYellowBox = true;

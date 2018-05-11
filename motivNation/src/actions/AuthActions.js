@@ -30,6 +30,21 @@ export const fetchUserPoints = () => {
         };
 };
 
+
+export const resetPoints = () => {
+  const { currentUser } = firebase.auth();
+  //update points here
+  firebase.database()
+   .ref(`users/${currentUser.uid}/userData/`)
+   .update({
+     points: 0
+    });
+
+  return {
+    type: REWARD_DONT_SHOW,
+  };
+};
+
 export const rewardSwitch = () => {
 
   const { currentUser } = firebase.auth();

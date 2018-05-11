@@ -19,6 +19,7 @@ import { Container,
 import { emailChanged, passwordChanged, loginUser, loginGoogleUser, registerGoogleUser } from '../actions';
 //import { Spinner } from './common';
 
+//console.disableYellowBox = true;
 class LoginForm extends Component {
   componentWillMount() {
     GoogleSignin.hasPlayServices({ autoResolve: true });

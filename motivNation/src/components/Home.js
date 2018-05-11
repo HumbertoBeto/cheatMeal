@@ -6,7 +6,7 @@ import { Dimensions, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Icon, Text, Container, Content, Thumbnail, View, H2, H1 } from 'native-base';
 import { RewardConfirm, MyView } from './common';
-import { myGoalsPressed, myToolsPressed, myNationPressed, fetchUserPoints, rewardSwitch } from '../actions';
+import { myGoalsPressed, myToolsPressed, myNationPressed, fetchUserPoints, rewardSwitch, resetPoints } from '../actions';
 
 class Home extends Component {
 state = { showModal: false, isHidden: true };
@@ -33,6 +33,7 @@ state = { showModal: false, isHidden: true };
   onAccept() {
     this.props.resetPoints(); //implement this sets points to 0
     this.setState({ showModal: false });
+    this.state.isHidden = true;
   }
   onToolsButtonPressed() {
   this.props.myToolsPressed();
@@ -52,7 +53,6 @@ renderButtonC() {
     block
     large
     iconLeft
-    warning
     onPress={this.onNationButtonPressed.bind(this)}
     style={{ marginTop: 20 }}
     >
@@ -85,6 +85,7 @@ renderButtonB() {
     block
     large
     iconLeft
+    warning
     onPress={this.onToolsButtonPressed.bind(this)}
     style={{ marginTop: 20 }}
     >
@@ -139,8 +140,8 @@ renderButtonB() {
           </View>
           <View style={{ marginTop: 30 }}>
             {this.renderButtonA()}
-            {this.renderButtonB()}
             {this.renderButtonC()}
+            {this.renderButtonB()}
             <MyView hide={this.state.isHidden}>
             {this.renderRewardButton()}
             </MyView>
@@ -159,6 +160,8 @@ renderButtonB() {
   }
 }
 
+//{this.renderButtonB()}
+
 const mapStateToProps = ({ auth }) => {
   const { email, password, error, loading, points, rewardHidden } = auth;
 
@@ -166,4 +169,9 @@ const mapStateToProps = ({ auth }) => {
 };
 
 export default connect(mapStateToProps,
-  { myGoalsPressed, myNationPressed, myToolsPressed, fetchUserPoints, rewardSwitch })(Home);
+  { myGoalsPressed,
+    myNationPressed,
+    myToolsPressed,
+    fetchUserPoints,
+    rewardSwitch,
+    resetPoints })(Home);

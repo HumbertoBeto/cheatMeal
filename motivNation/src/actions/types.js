@@ -18,3 +18,4 @@ export const EXERCISE_SEARCH_BUTTON_PRESSED = 'exercise_search_button_pressed';
 export const FETCH_USER_POINTS_SUCCESS = 'fetch_user_points_success';
 export const REWARD_SHOW = 'reward_show';
 export const REWARD_DONT_SHOW = 'reward_dont_show';
+export const POST_FETCH_SUCCESS = 'post_fetch_success';
