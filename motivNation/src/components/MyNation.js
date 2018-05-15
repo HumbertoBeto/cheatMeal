@@ -9,7 +9,7 @@ import PostItems from './PostItems';
 class MyNation extends Component {
 
   componentWillMount() {
-    this.props.goalFetch();
+    //this.props.goalFetch();
     this.props.postFetch();
     this.createDataSource(this.props);
   }
@@ -33,7 +33,7 @@ class MyNation extends Component {
 
   render() {
     //const user = GoogleSignin.currentUser();
-    console.log(this.props);
+    //console.log(this.props);
     return (
       <ListView
         style={{ marginBottom: -2 }}

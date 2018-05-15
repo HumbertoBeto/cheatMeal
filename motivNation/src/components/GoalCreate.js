@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { goalUpdate, goalCreate } from '../actions';
+import { goalUpdate, goalCreate, postCreate } from '../actions';
 import { Card, CardSection, Input, Button } from './common';
 
 class GoalCreate extends Component {
   onButtonPressed() {
     const { goal_name } = this.props;
     this.props.goalCreate({ goal_name });
+    //this.props.postCreate({ goal_name });
   }
 
   render() {
@@ -36,4 +37,4 @@ const mapStateToProps = (state) => {
   return { goal_name };
 };
 
-export default connect(mapStateToProps, { goalUpdate, goalCreate })(GoalCreate);
+export default connect(mapStateToProps, { goalUpdate, goalCreate, postCreate })(GoalCreate);

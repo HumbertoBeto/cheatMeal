@@ -12,28 +12,32 @@ onButtonPress() {
   }
 
   render() {
-    const { goal_name } = this.props.goal;
-    const user = GoogleSignin.currentUser();
+    const myName = this.props.goal.userName;
+    const myPic = this.props.goal.userPic;
+  //  const myPostName = this.props.goal.name.goal_name;
+    const myLikes = this.props.goal.likes;
+    //console.log(this.props.goal_name);
+    //const user = GoogleSignin.currentUser();
 
   return (
     <Card
-    title={user.name}
+    title={myName}
     image={{ uri: 'https://cdn10.bostonmagazine.com/wp-content/uploads/2013/07/treadmilllarge.jpg' }}
     >
     <Text style={{ marginBottom: 5, alignSelf: 'center' }}>
-    Created Goal: {goal_name}
+    Created a Goal! Motivate Them!
     </Text>
     <View style={{ alignSelf: 'center' }}>
     <Avatar
       rounded
       medium
-      source={{ uri: user.photo }}
+      source={{ uri: myPic }}
       activeOpacity={0.7}
       style={{ marginBottom: 2, alignSelf: 'center' }}
     />
     </View>
     <Text style={{ marginBottom: 10, alignSelf: 'center' }}>
-    Motivated 15 times!
+    Motivated {myLikes} times!
     </Text>
     <Button
       icon={{ name: 'envira', type: 'font-awesome' }}

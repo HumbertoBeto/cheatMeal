@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 import { GoogleSignin } from 'react-native-google-signin';
 import { Actions } from 'react-native-router-flux';
-import { GOAL_UPDATE, GOAL_CREATE, GOAL_FETCH_SUCCESS, POST_FETCH_SUCCESS } from './types';
+import { GOAL_UPDATE, GOAL_CREATE, GOAL_FETCH_SUCCESS, POST_FETCH_SUCCESS, POST_CREATE } from './types';
 
 export const goalUpdate = ({ prop, value }) => {
   return {
@@ -12,10 +12,13 @@ export const goalUpdate = ({ prop, value }) => {
 
 export const goalCreate = ({ goal_name }) => {
   const { currentUser } = firebase.auth();
+  //const myName = { goal_name };
   console.log(currentUser);
   const user = GoogleSignin.currentUser();
+  console.log(currentUser.uid);
 
-  firebase.database().ref(`/users/${currentUser.uid}/postsCreated`).push(
+
+  firebase.database().ref(`/users/YCXh6HR4XuWmpl9xuuDbASZ2VQk1/postsCreated`).push(
     {
     likes: 0,
     name: { goal_name },
@@ -23,23 +26,28 @@ export const goalCreate = ({ goal_name }) => {
     userName: user.name,
     userPic: user.photo
     }
-  ).then(() => {
-    console.log('Created likes');
-  });
+  );
+
+  firebase.database().ref(`/users/pBEYmfYUQxVm7aaGC9Ps67wYV8r2/postsCreated`).push(
+    {
+    likes: 0,
+    name: { goal_name },
+    heading: 'Created Goal: ',
+    userName: user.name,
+    userPic: user.photo
+    }
+  );
 
   return (dispatch) => {
-    const likes = 0;
     firebase.database().ref(`/users/${currentUser.uid}/goals`)
       .push({ goal_name })
       .then(() => {
         dispatch({ type: GOAL_CREATE });
         Actions.pop();
-        //firebase.database().ref(`/users/${currentUser.uid}/userData`).update({
-        //  points: 40
-      //  });
       });
   };
 };
+
 
 export const goalFetch = () => {
   const { currentUser } = firebase.auth();
@@ -53,9 +61,9 @@ export const goalFetch = () => {
 };
 
 export const postFetch = () => {
-
+    const { currentUser } = firebase.auth();
   return (dispatch) => {
-    firebase.database().ref(`/users/`)
+    firebase.database().ref(`/users/${currentUser.uid}/postsCreated`)
       .on('value', snapshot => {
         console.log(snapshot.val());
         dispatch({ type: POST_FETCH_SUCCESS, payload: snapshot.val() });

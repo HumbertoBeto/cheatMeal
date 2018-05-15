@@ -61,7 +61,7 @@ class MyTools extends Component {
             style={{ marginTop: 50 }}
             >
               <Icon name='construct' />
-              <Text>HIIT Timer</Text>
+              <Text>Timer</Text>
             </Button>
 
             <Button
@@ -76,17 +76,6 @@ class MyTools extends Component {
               <Text>Food Database</Text>
             </Button>
 
-            <Button
-              block
-              large
-              iconLeft
-              danger
-              onPress={this.onCalorieCalcButtonPressed.bind(this)}
-              style={{ marginTop: 50 }}
-            >
-              <Icon name='construct' />
-              <Text>Calorie Calculator</Text>
-            </Button>
 
           </View>
         </Content>
