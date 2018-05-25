@@ -41,17 +41,6 @@ class MyTools extends Component {
           </H2>
         </View>
           <View>
-            <Button
-              block
-              large
-              iconLeft
-              success
-              onPress={this.onExerciseDataButtonPressed.bind(this)}
-              style={{ marginTop: 20 }}
-            >
-              <Icon name='clipboard' />
-              <Text> Exercise Database </Text>
-            </Button>
 
             <Button
             block
@@ -64,19 +53,6 @@ class MyTools extends Component {
               <Text>Timer</Text>
             </Button>
 
-            <Button
-              block
-              large
-              iconLeft
-              warning
-              onPress={this.onFoodDataButtonPressed.bind(this)}
-              style={{ marginTop: 50 }}
-            >
-              <Icon name='construct' />
-              <Text>Food Database</Text>
-            </Button>
-
-
           </View>
         </Content>
       </Container>
@@ -84,6 +60,32 @@ class MyTools extends Component {
     );
   }
 }
+
+/*
+<Button
+  block
+  large
+  iconLeft
+  success
+  onPress={this.onExerciseDataButtonPressed.bind(this)}
+  style={{ marginTop: 20 }}
+>
+  <Icon name='clipboard' />
+  <Text> Exercise Database </Text>
+</Button>
+
+<Button
+  block
+  large
+  iconLeft
+  warning
+  onPress={this.onFoodDataButtonPressed.bind(this)}
+  style={{ marginTop: 50 }}
+>
+  <Icon name='construct' />
+  <Text>Food Database</Text>
+</Button>
+*/
 
 
 export default connect(null,

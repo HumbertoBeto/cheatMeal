@@ -140,7 +140,6 @@ renderButtonB() {
           </View>
           <View style={{ marginTop: 30 }}>
             {this.renderButtonA()}
-            {this.renderButtonC()}
             {this.renderButtonB()}
             <MyView hide={this.state.isHidden}>
             {this.renderRewardButton()}
@@ -161,6 +160,7 @@ renderButtonB() {
 }
 
 //{this.renderButtonB()}
+//{this.renderButtonC()}
 
 const mapStateToProps = ({ auth }) => {
   const { email, password, error, loading, points, rewardHidden } = auth;

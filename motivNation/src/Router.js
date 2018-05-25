@@ -44,7 +44,7 @@ const RouterComponent = () => {
         }
         key="home"
         component={Home}
-        title="MotivNation"
+        title="CheatMeal"
         />
         <Scene
           onRight={() => Actions.goalCreate()}
